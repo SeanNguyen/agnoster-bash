@@ -194,6 +194,10 @@ prompt_segment() {
     [[ -n $3 ]] && PR="$PR$3"
 }
 
+prompt_wrap() {
+    PR="┌$PR\n└──▪ "
+}
+
 # End the prompt, closing any open segments
 prompt_end() {
     if [[ -n $CURRENT_BG ]]; then
@@ -389,6 +393,7 @@ build_prompt() {
     prompt_dir
     prompt_git
     prompt_end
+    prompt_wrap
 }
 
 # from orig... 
