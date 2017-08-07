@@ -212,8 +212,8 @@ prompt_end() {
 prompt_context() {
     local user=`whoami`
     
-    if [[ $user != $DEFAULT_USER || -n $SSH_CLIENT ]]; then
-	prompt_segment black default "$user@\h"
+    if [[ true || $user != $DEFAULT_USER || -n $SSH_CLIENT ]]; then
+	prompt_segment black default "$user @ \h"
     fi
 }
 
@@ -384,7 +384,7 @@ prompt_emacsdir() {
 build_prompt() {
     [[ ! -z ${AG_EMACS_DIR+x} ]] && prompt_emacsdir
     prompt_status
-    [[ -z ${AG_NO_HIST+x} ]] && prompt_histdt
+    # [[ -z ${AG_NO_HIST+x} ]] && prompt_histdt
     [[ -z ${AG_NO_CONTEXT+x} ]] && prompt_context
     prompt_dir
     prompt_git
@@ -405,7 +405,7 @@ set_bash_prompt() {
     build_prompt
 
     # uncomment below to use right prompt
-    #     PS1='\[$(tput sc; printf "%*s" $COLUMNS "$PRIGHT"; tput rc)\]'$PR
+    # PS1='\[$(tput sc; printf "%*s" $COLUMNS "$PRIGHT"; tput rc)\]'$PR
     PS1=$PR
 }
 
